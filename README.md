@@ -1,59 +1,13 @@
 # RegistroProductos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
+Para esta actividad se creó un formulario reactivo en Angular para registrar productos, con los campos nombre, descripción, precio, categoría y stock. Cada campo tiene sus validaciones, el formulario muestra mensajes de error cuando algo está mal escrito y los datos solo se envían a un servicio cuando el formulario es válido.
 
-## Development server
+El código se organizó en tres partes. En producto.model.ts está la interfaz Producto, que define los cinco campos con su tipo de dato. En producto.service.ts está el servicio ProductoService, que simula el envío de los datos a un backend y los muestra en la consola. En producto-form.component están el formulario, su vista y sus estilos. El formulario se construyó con FormBuilder y se conecta al HTML con [formGroup] y formControlName.
 
-To start a local development server, run:
+Las validaciones definidas fueron: nombre obligatorio con mínimo 3 caracteres, descripción obligatoria con mínimo 10 caracteres, precio obligatorio y mayor o igual a 0.01, categoría obligatoria y stock obligatorio y no menor que 0. Los errores se muestran con *ngIf y *ngFor debajo de cada campo, solo cuando el campo ya fue tocado o modificado, y los campos con error se resaltan con borde rojo. El botón cambia a "Enviando..." mientras se procesa y al terminar aparece un mensaje de éxito en verde.
 
-```bash
-ng serve
-```
+El servicio se inyecta en el componente por el constructor. Al presionar "Registrar producto", si el formulario es inválido se muestran todos los errores y no se envía nada; si es válido, el producto se manda al servicio, se muestra en la consola y el formulario se limpia.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Se probaron varios casos: formulario vacío, nombre muy corto, descripción muy corta, precio en 0, stock negativo y datos válidos. En todos los casos los mensajes de error y el envío funcionaron como se esperaba.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Separar el modelo, el servicio y el componente hace el código más ordenado y fácil de mantener, ya que si se necesita cambiar algo del envío de datos solo se modifica el servicio sin afectar el formulario.
