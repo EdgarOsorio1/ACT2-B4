@@ -1,0 +1,67 @@
+.contenedor {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #1c2f5e;
+}
+
+.campo {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 4px;
+  font-weight: bold;
+  color: #333;
+}
+
+input, textarea, select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input.invalido, textarea.invalido, select.invalido {
+  border-color: #e63946;
+  background-color: #fff5f5;
+}
+
+.errores {
+  margin: 4px 0 0 0;
+  padding-left: 18px;
+  color: #e63946;
+  font-size: 13px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1c2f5e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.exito {
+  margin-top: 12px;
+  color: #2a9d8f;
+  font-weight: bold;
+  text-align: center;
+}

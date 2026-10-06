@@ -1,0 +1,88 @@
+<div class="contenedor">
+  <h2>Registro de Productos</h2>
+
+  <form [formGroup]="productoForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Nombre -->
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        [class.invalido]="f['nombre'].invalid && (f['nombre'].touched || f['nombre'].dirty)">
+
+      <ul class="errores" *ngIf="obtenerErrores('nombre').length > 0">
+        <li *ngFor="let error of obtenerErrores('nombre')">{{ error }}</li>
+      </ul>
+    </div>
+
+    <!-- Descripción -->
+    <div class="campo">
+      <label for="descripcion">Descripción</label>
+      <textarea
+        id="descripcion"
+        formControlName="descripcion"
+        [class.invalido]="f['descripcion'].invalid && (f['descripcion'].touched || f['descripcion'].dirty)">
+      </textarea>
+
+      <ul class="errores" *ngIf="obtenerErrores('descripcion').length > 0">
+        <li *ngFor="let error of obtenerErrores('descripcion')">{{ error }}</li>
+      </ul>
+    </div>
+
+    <!-- Precio -->
+    <div class="campo">
+      <label for="precio">Precio</label>
+      <input
+        id="precio"
+        type="number"
+        step="0.01"
+        formControlName="precio"
+        [class.invalido]="f['precio'].invalid && (f['precio'].touched || f['precio'].dirty)">
+
+      <ul class="errores" *ngIf="obtenerErrores('precio').length > 0">
+        <li *ngFor="let error of obtenerErrores('precio')">{{ error }}</li>
+      </ul>
+    </div>
+
+    <!-- Categoría -->
+    <div class="campo">
+      <label for="categoria">Categoría</label>
+      <select
+        id="categoria"
+        formControlName="categoria"
+        [class.invalido]="f['categoria'].invalid && (f['categoria'].touched || f['categoria'].dirty)">
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <ul class="errores" *ngIf="obtenerErrores('categoria').length > 0">
+        <li *ngFor="let error of obtenerErrores('categoria')">{{ error }}</li>
+      </ul>
+    </div>
+
+    <!-- Stock -->
+    <div class="campo">
+      <label for="stock">Stock</label>
+      <input
+        id="stock"
+        type="number"
+        formControlName="stock"
+        [class.invalido]="f['stock'].invalid && (f['stock'].touched || f['stock'].dirty)">
+
+      <ul class="errores" *ngIf="obtenerErrores('stock').length > 0">
+        <li *ngFor="let error of obtenerErrores('stock')">{{ error }}</li>
+      </ul>
+    </div>
+
+    <button type="submit" [disabled]="enviando">
+      {{ enviando ? 'Enviando...' : 'Registrar producto' }}
+    </button>
+
+    <p class="exito" *ngIf="envioExitoso">
+      Producto registrado correctamente.
+    </p>
+
+  </form>
+</div>
